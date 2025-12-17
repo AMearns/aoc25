@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -18,14 +18,26 @@ int main() {
 		}
 
 		int n = stoi(input);
-		dial = (((dial + n) % 100) + 100) % 100;
 
-		if (dial == 0) {
-			zeroCount++;
+		for (int i = 0; i < abs(n); i++) {
+			if (n < 0) {
+				dial--;
+		    	} else {
+				dial++;
+		    	}
+
+			if (dial < 0) {
+				dial += 100;
+		    	} else if (dial >= 100) {
+				dial -= 100;
+		    	}
+
+		    	if (dial == 0) {
+				zeroCount++;
+		    	}
 		}
 	}
 	InputFile.close(); 
-
 	cout << zeroCount << endl;
 
 	return 0;
